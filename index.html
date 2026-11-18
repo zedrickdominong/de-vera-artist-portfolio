@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>De Vera Family Artist Portfolio System</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600&display=swap">
+<style>
+:root{--bg:#f3f2ee;--panel:#fffefb;--ink:#1f1f1c;--mute:#66655d;--line:#dcdad2;--forest:#455a4b;--btnink:#fff;--coral:#c4512c;--ok:#2f6b45;
+--serif:'Source Serif 4',Georgia,'Times New Roman',serif;--sans:system-ui,-apple-system,'Segoe UI',Arial,sans-serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161815;--panel:#20231f;--ink:#eceae2;--mute:#a7a69b;--line:#383b33;--forest:#7ba488;--btnink:#10140f;--coral:#f08a66;--ok:#7cc795;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#161815;--panel:#20231f;--ink:#eceae2;--mute:#a7a69b;--line:#383b33;--forest:#7ba488;--btnink:#10140f;--coral:#f08a66;--ok:#7cc795;color-scheme:dark}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--serif)}
+h1,h2,h3{font-weight:600;line-height:1.15;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--coral);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+header{border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+header .wrap{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding-top:12px;padding-bottom:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:700 15px var(--sans);letter-spacing:.02em}
+.brand i{width:34px;height:34px;border-radius:50%;background:var(--forest);color:var(--btnink);display:grid;place-items:center;font-style:normal;font-size:18px}
+.brand span{font:400 14px var(--serif);color:var(--mute)}
+nav{margin-left:auto;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+nav a,nav button{font:400 15px var(--serif);padding:8px 12px;border-radius:999px;border:1px solid transparent;background:none;color:inherit;text-decoration:none;cursor:pointer}
+nav a:hover,nav button:hover{border-color:var(--line)}
+nav .pill{border-color:var(--mute)}
+.btn{display:inline-block;font:600 15px var(--sans);background:var(--forest);color:var(--btnink);border:0;border-radius:6px;padding:11px 18px;cursor:pointer;text-decoration:none}
+.btn.ghost{background:none;color:var(--ink);border:1px solid var(--line)}
+.btn.sm{padding:7px 12px;font-size:13px}
+.lnk{background:none;border:0;color:var(--coral);font:400 14px var(--serif);cursor:pointer;padding:4px}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;padding:56px 0 40px}
+.hero h1{font-size:clamp(2.4rem,6vw,4.2rem);letter-spacing:-.02em}
+.hero p{max-width:46ch;color:var(--mute);font-size:1.1rem;margin:16px 0 24px}
+figure{margin:0}
+figure img,.thumb{display:block;width:100%;border-radius:4px;background:var(--line)}
+figcaption{font-size:14px;color:var(--mute);margin-top:8px}
+.bar{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0 24px}
+.bar input,.bar select,input,select,textarea{font:400 16px var(--serif);padding:11px 12px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink);width:100%}
+.bar input{flex:1 1 280px;width:auto}.bar select{flex:0 0 220px;width:auto}
+label{display:block;font:600 13px var(--sans);margin:14px 0 6px;color:var(--mute)}
+textarea{min-height:96px;resize:vertical}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px}
+.card{text-decoration:none;background:var(--panel);border:1px solid var(--line);display:block;border-radius:4px;overflow:hidden}
+.card:hover{border-color:var(--forest)}
+.card img{aspect-ratio:4/3;object-fit:cover;width:100%;display:block}
+.card div{padding:14px 16px 16px}
+.card h3{font-size:1.25rem}
+.meta{color:var(--mute);font-size:14px;margin-top:4px}
+section{padding:28px 0}
+.empty{padding:40px;text-align:center;color:var(--mute);border:1px dashed var(--line)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+.panel{background:var(--panel);border:1px solid var(--line);padding:24px;border-radius:4px}
+.panel h2{font-size:1.5rem;margin-bottom:6px}
+.row{display:flex;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.row .thumb{width:64px;height:64px;object-fit:cover;flex:none}
+.row b{font:600 15px var(--sans)}
+.row .grow{flex:1;min-width:0}
+.tag{display:inline-block;font:600 12px var(--sans);padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--mute)}
+.tag.ok{color:var(--ok);border-color:var(--ok)}.tag.warn{color:var(--coral);border-color:var(--coral)}
+.prof{display:grid;grid-template-columns:280px 1fr;gap:32px;padding:36px 0 12px;align-items:start}
+.prof h1{font-size:clamp(2rem,5vw,3rem)}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px}
+.gal article img{aspect-ratio:4/3;object-fit:cover;width:100%;border-radius:4px;display:block}
+.gal h3{font-size:1.15rem;margin-top:10px}
+.gal p{margin:4px 0 10px;color:var(--mute);font-size:15px}
+.narrow{max-width:440px;margin:48px auto}
+.hint{font-size:14px;color:var(--mute);margin-top:14px}
+.err{color:var(--coral);font:600 14px var(--sans);margin-top:10px}
+.sr{position:absolute;left:-9999px}
+dialog{border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink);width:min(520px,92vw);padding:24px}
+dialog::backdrop{background:rgba(0,0,0,.5)}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--forest);color:var(--btnink);font:600 14px var(--sans);padding:12px 18px;border-radius:6px;opacity:0;pointer-events:none;transition:opacity .2s;max-width:92vw}
+#toast.on{opacity:1}
+footer{border-top:1px solid var(--line);margin-top:30px;padding:24px 0;color:var(--mute);font-size:14px}
+.collage{display:grid;grid-template-columns:1fr 1fr;gap:14px}.collage figure:nth-child(even){margin-top:30px}.collage img{aspect-ratio:4/3;object-fit:cover;box-shadow:0 6px 18px rgba(0,0,0,.12)}
+.card{transition:transform .2s,border-color .2s,box-shadow .2s}.card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.12)}
+.card h3{font-size:1.3rem}.hero{border-bottom:1px solid var(--line);margin-bottom:8px}#directory h2,#about h2{font-size:2rem}
+@media (max-width:760px){.hero,.two,.prof{grid-template-columns:1fr}.hero{padding-top:32px}nav{margin-left:0}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* Refined visual layer */
+:root{
+  --bg:#f6f4ef;--panel:#fffdf9;--ink:#20251f;--mute:#6c7168;--line:#deded5;
+  --forest:#314f42;--forest-2:#426957;--coral:#c96846;--ok:#397553;
+  --shadow:0 18px 50px rgba(38,51,42,.08);--soft-shadow:0 8px 24px rgba(38,51,42,.08)
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141915;--panel:#1e261f;--ink:#eff0e9;--mute:#a5ada2;--line:#364139;--forest:#8cc0a1;--forest-2:#a0d4b1;--coral:#f29a75;--shadow:0 18px 50px rgba(0,0,0,.22);--soft-shadow:0 8px 24px rgba(0,0,0,.18)}}
+:root[data-theme="dark"]{--bg:#141915;--panel:#1e261f;--ink:#eff0e9;--mute:#a5ada2;--line:#364139;--forest:#8cc0a1;--forest-2:#a0d4b1;--coral:#f29a75;--shadow:0 18px 50px rgba(0,0,0,.22);--soft-shadow:0 8px 24px rgba(0,0,0,.18)}
+body{background:radial-gradient(circle at 12% 0%,rgba(209,225,211,.34),transparent 28rem),var(--bg);letter-spacing:.005em}
+header{background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom-color:color-mix(in srgb,var(--line) 78%,transparent)}
+header .wrap{min-height:68px;padding-top:10px;padding-bottom:10px}
+.brand{font-size:14px;letter-spacing:.08em;text-transform:uppercase;gap:12px}
+.brand i{width:38px;height:38px;border-radius:12px;background:linear-gradient(145deg,var(--forest-2),var(--forest));box-shadow:0 6px 16px rgba(49,79,66,.2);font-size:19px}
+.brand span{font-size:13px;text-transform:none;letter-spacing:0}
+nav{gap:4px}
+nav a,nav button{font-size:14px;border-radius:10px;padding:8px 11px;transition:background .2s,border-color .2s,color .2s}
+nav a:hover,nav button:hover{background:var(--panel);border-color:var(--line)}
+nav .pill{background:var(--forest);color:var(--btnink);border-color:var(--forest);box-shadow:0 5px 14px rgba(49,79,66,.16)}
+nav .pill:hover{background:var(--forest-2);border-color:var(--forest-2);color:var(--btnink)}
+.theme-toggle{font:600 12px var(--sans);display:inline-flex;align-items:center;gap:6px;padding:8px 11px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);cursor:pointer;white-space:nowrap;transition:background .2s,border-color .2s,transform .2s}.theme-toggle:hover{border-color:var(--forest-2);transform:translateY(-1px)}
+
+.btn{border-radius:10px;background:linear-gradient(135deg,var(--forest-2),var(--forest));box-shadow:0 7px 16px rgba(49,79,66,.16);transition:transform .2s,box-shadow .2s,background .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 11px 22px rgba(49,79,66,.22);background:linear-gradient(135deg,var(--forest),var(--forest-2))}
+.btn.ghost{box-shadow:none;background:transparent}
+.btn.ghost:hover{color:var(--forest);border-color:var(--forest);background:color-mix(in srgb,var(--forest) 7%,transparent)}
+.hero{position:relative;min-height:480px;gap:64px;padding:76px 0 62px;border-bottom:0;margin-bottom:20px}
+.hero:before{content:'DE VERA FAMILY ARTISTS';display:block;position:absolute;top:25px;left:0;font:700 11px var(--sans);letter-spacing:.18em;color:var(--coral)}
+.hero h1{max-width:8ch;font-size:clamp(3.4rem,7vw,6.2rem);letter-spacing:-.055em;line-height:.96}
+.hero p{max-width:42ch;color:var(--mute);font-size:1.16rem;line-height:1.7;margin:22px 0 30px}
+.hero .btn{padding:13px 20px}
+.collage{gap:18px;transform:rotate(1deg)}
+.collage figure:nth-child(even){margin-top:42px}
+.collage figure{transition:transform .25s}
+.collage figure:hover{transform:translateY(-5px) rotate(-1deg)}
+figure img,.thumb{border-radius:12px}
+.collage img{box-shadow:0 16px 30px rgba(38,51,42,.14);border:5px solid var(--panel)}
+figcaption{font:13px var(--sans);letter-spacing:.01em;margin:10px 4px 0}
+section{padding:38px 0}
+section h2{font-size:clamp(1.8rem,3vw,2.45rem);letter-spacing:-.03em}
+#directory h2,#about h2{font-size:clamp(1.8rem,3vw,2.45rem)}
+.bar{align-items:center;margin:22px 0 28px;padding:10px;background:color-mix(in srgb,var(--panel) 72%,transparent);border:1px solid var(--line);border-radius:14px}
+.bar input,.bar select,input,select,textarea{border-radius:10px;background:var(--panel);transition:border-color .2s,box-shadow .2s}
+.bar input:focus,.bar select:focus,input:focus,select:focus,textarea:focus{border-color:var(--forest-2);box-shadow:0 0 0 4px color-mix(in srgb,var(--forest-2) 15%,transparent);outline:0}
+.bar select{flex-basis:210px}
+.grid{gap:26px}
+.card{border-radius:14px;border-color:color-mix(in srgb,var(--line) 82%,transparent);box-shadow:0 3px 0 rgba(49,79,66,.02);transition:transform .25s,border-color .25s,box-shadow .25s}
+.card:hover{border-color:var(--forest-2);box-shadow:var(--soft-shadow);transform:translateY(-6px)}
+.card img{aspect-ratio:5/4;filter:saturate(.92);transition:transform .35s,filter .35s}
+.card:hover img{transform:scale(1.035);filter:saturate(1.04)}
+.card div{padding:17px 18px 19px}
+.card h3{font-size:1.22rem;letter-spacing:-.015em}
+.meta{font-family:var(--sans);font-size:12px;letter-spacing:.015em}
+.two{gap:26px}
+.panel{border-radius:16px;padding:28px;box-shadow:var(--soft-shadow);border-color:color-mix(in srgb,var(--line) 82%,transparent)}
+.panel h2{font-size:1.45rem;letter-spacing:-.025em}
+.row{padding:16px 0}
+.row .thumb{border-radius:10px}
+.tag{font-size:11px;letter-spacing:.03em;text-transform:uppercase;padding:4px 9px}
+.prof{grid-template-columns:minmax(240px,340px) 1fr;gap:46px;padding:44px 0 24px}
+.prof figure img{box-shadow:var(--shadow);border:7px solid var(--panel)}
+.prof h1{font-size:clamp(2.5rem,5vw,4.2rem);letter-spacing:-.05em}
+.prof .btn{margin-top:4px}
+.gal{gap:32px 26px}
+.gal article img{border-radius:12px;box-shadow:var(--soft-shadow)}
+.gal h3{font-size:1.2rem;letter-spacing:-.015em}
+.narrow{margin:72px auto}
+.empty{border-radius:14px;background:color-mix(in srgb,var(--panel) 62%,transparent);padding:48px 30px}
+dialog{border-radius:16px;padding:30px;box-shadow:0 24px 80px rgba(0,0,0,.2)}
+dialog h2{font-size:1.8rem;letter-spacing:-.03em}
+#toast{border-radius:10px;box-shadow:var(--soft-shadow)}
+footer{margin-top:48px;padding:30px 0;font-family:var(--sans);font-size:12px;letter-spacing:.02em}
+@media (max-width:760px){
+  header .wrap{gap:10px}.brand{width:100%}.brand span{margin-left:auto}
+  nav{width:100%;overflow:auto;flex-wrap:nowrap;padding-bottom:2px;margin-left:0}
+  nav a,nav button{white-space:nowrap}
+  .hero{min-height:0;gap:34px;padding:66px 0 40px}.hero h1{max-width:10ch}.hero p{font-size:1.05rem}
+  .collage{gap:10px}.collage figure:nth-child(even){margin-top:24px}.collage img{border-width:3px}
+  .bar{padding:8px;gap:8px}.bar input,.bar select{flex-basis:100%;width:100%}
+  .panel{padding:21px}.prof{gap:28px;padding-top:30px}.prof figure{max-width:360px}
+}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<a class="brand" href="#home"><i>D</i>DE VERA FAMILY ARTIST <span>Portfolio System</span></a>
+<nav id="nav" aria-label="Main"></nav><button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" title="Switch theme">◐ <span>Dark mode</span></button></div></header>
+<main class="wrap" id="app"></main>
+<footer><div class="wrap">De Vera’s Portfolio System · Nueva Vizcaya State University, College of Information Technology · Prototype with sample data and sample artwork.</div></footer>
+<dialog id="dlg" aria-labelledby="dt"><form id="inqf" autocomplete="off">
+<h2 id="dt">Send an inquiry</h2><p class="meta" id="dsub"></p>
+<label for="itype">What do you need?</label>
+<select id="itype"><option>Purchase interest</option><option>Commission request</option><option>General question</option></select>
+<label for="iname">Your name</label><input id="iname" required>
+<label for="imail">Your email</label><input id="imail" type="email" required>
+<label for="imsg">Message</label><textarea id="imsg" required></textarea>
+<input id="trap" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px">
+<label style="display:flex;gap:8px;align-items:flex-start;font-weight:400"><input id="icon" type="checkbox" required style="width:auto;margin-top:4px">I agree that my details are shared privately with this artist only to reply to this inquiry.</label>
+<p class="hint">No payment is taken here. Any sale or commission is arranged between you and the artist.</p>
+<div style="display:flex;gap:10px;margin-top:16px"><button class="btn" type="submit">Send inquiry</button><button class="btn ghost" type="button" id="dx">Cancel</button></div>
+</form></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>
+const SPECS=['Painting','Photography','Illustration','Sculpture','Mixed Media'];
+const PH='data:image/svg+xml,'+encodeURIComponent("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect width='400' height='300' fill='#c9c7bd'/><path d='M0 300V200L120 140L210 210L300 130L400 220V300Z' fill='#a9a79b'/></svg>");
+const mx=(h,t,w)=>{const n=parseInt(h.slice(1),16);return '#'+[n>>16,n>>8&255,n&255].map(x=>Math.round(x+((w?255:0)-x)*t).toString(16).padStart(2,'0')).join('')};
+const SV=s=>'data:image/svg+xml,'+encodeURIComponent("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'>"+s+'</svg>');
+const shrink=f=>new Promise(r=>{const fr=new FileReader();fr.onload=()=>{const i=new Image();i.onload=()=>{const s=Math.min(1,800/Math.max(i.width,i.height)),c=document.createElement('canvas');c.width=i.width*s;c.height=i.height*s;c.getContext('2d').drawImage(i,0,0,c.width,c.height);r(c.toDataURL('image/jpeg',.8))};i.onerror=()=>r('');i.src=fr.result};fr.onerror=()=>r('');fr.readAsDataURL(f)});
+function art(a,b,c,v,k){v=v%3;k=k||'kjas'[v%4];
+const fx="<filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' seed='"+(v+4)+"'/><feColorMatrix type='saturate' values='0'/></filter><filter id='w'><feTurbulence baseFrequency='.025' numOctaves='3' seed='"+(v+2)+"'/><feDisplacementMap in='SourceGraphic' scale='10'/></filter><filter id='b'><feGaussianBlur stdDeviation='7'/></filter>";
+const sun=(x,y,r)=>`<radialGradient id='g'><stop offset='0' stop-color='${c}' stop-opacity='.95'/><stop offset='1' stop-color='${c}' stop-opacity='0'/></radialGradient><circle cx='${x}' cy='${y}' r='${r*2.4}' fill='url(#g)'/><circle cx='${x}' cy='${y}' r='${r}' fill='${c}'/>`;
+const K='#2b332d',st=`stroke='${K}' stroke-width='2.5' stroke-linejoin='round'`;
+if(k==='k'){const x=v==1?290:110;
+const L=[`<path d='M0 205Q90 150 180 190T400 160V300H0Z' fill='${mx(b,.4,1)}'/><path d='M0 235Q120 180 230 225T400 205V300H0Z' fill='${b}'/><path d='M0 275Q150 240 400 268V300H0Z' fill='${mx(b,.5)}'/>`,
+`<path d='M0 195L110 105L200 180L295 85L400 175V300H0Z' fill='${mx(b,.35,1)}'/><path d='M0 240Q100 190 200 232T400 215V300H0Z' fill='${b}'/>`,
+`<rect y='218' width='400' height='82' fill='${mx(b,.25)}'/><path d='M0 218Q100 196 200 218T400 210V226H0Z' fill='${mx(b,.4,1)}'/><path d='M300 218V150M302 165l-22-18M302 180l20-16' stroke='${mx(b,.6)}' stroke-width='5' fill='none'/><circle cx='304' cy='140' r='32' fill='${mx(b,.1)}'/>`][v];
+return SV(`<defs><linearGradient id='s' x2='0' y2='1'><stop offset='0' stop-color='${mx(a,.3,1)}'/><stop offset='1' stop-color='${a}'/></linearGradient>${fx}</defs><rect width='400' height='300' fill='url(#s)'/><g filter='url(#w)'>${sun(x,95,30)}${L}</g><rect width='400' height='300' filter='url(#n)' opacity='.12'/>`)}
+if(k==='j'){const R=[`<path d='M0 190L90 140L170 175L260 120L340 165L400 140V300H0Z' fill='${mx(b,.45,1)}'/><path d='M0 220L120 175L220 215L320 170L400 200V300H0Z' fill='${mx(b,.2,1)}'/><path d='M0 255L150 225L300 250L400 235V300H0Z' fill='${b}'/>`,
+`<path d='M0 170Q100 120 200 165T400 130V300H0Z' fill='${mx(b,.3,1)}'/><rect x='-20' y='170' width='440' height='34' fill='#fff' opacity='.5' filter='url(#b)'/><path d='M0 215Q120 175 230 210T400 190V300H0Z' fill='${mx(b,.1,1)}'/><rect x='-20' y='222' width='440' height='30' fill='#fff' opacity='.4' filter='url(#b)'/><path d='M0 262Q150 232 400 258V300H0Z' fill='${b}'/>`,
+`<g fill='${b}'><rect x='20' y='150' width='60' height='150'/><rect x='95' y='110' width='50' height='190'/><rect x='160' y='165' width='70' height='135'/><rect x='245' y='95' width='55' height='205'/><rect x='315' y='140' width='70' height='160'/></g><g fill='${c}' opacity='.8'><rect x='108' y='130' width='8' height='10'/><rect x='258' y='120' width='8' height='10'/><rect x='258' y='150' width='8' height='10'/><rect x='330' y='165' width='8' height='10'/></g><rect y='268' width='400' height='32' fill='${mx(b,.4)}'/>`][v];
+return SV(`<defs><linearGradient id='s' x2='0' y2='1'><stop offset='0' stop-color='${a}'/><stop offset='.75' stop-color='${mx(c,.15)}'/></linearGradient><radialGradient id='vg'><stop offset='.55' stop-color='#000' stop-opacity='0'/><stop offset='1' stop-color='#000' stop-opacity='.5'/></radialGradient>${fx}</defs><rect width='400' height='300' fill='url(#s)'/>${sun(v==2?200:250,150,24)}${R}<rect width='400' height='300' fill='url(#vg)'/><rect width='400' height='300' filter='url(#n)' opacity='.2'/>`)}
+if(k==='a'){const I=[`<path d='M-10 180Q100 150 200 175T410 160V300H-10Z' fill='${mx(b,.45,1)}' ${st}/><path d='M-10 215Q100 185 200 210T410 195V300H-10Z' fill='${mx(b,.2,1)}' ${st}/><path d='M-10 250Q100 225 200 245T410 232V300H-10Z' fill='${b}' ${st}/>`,
+`<rect y='215' width='400' height='85' fill='${b}' ${st}/>${[60,130,200,270,340].map((x,i)=>`<path d='M${x} 215V${150-i%2*20}' ${st} fill='none'/><circle cx='${x}' cy='${140-i%2*20}' r='${16+i%3*3}' fill='${i%2?'#fff':c}' ${st}/><circle cx='${x}' cy='${140-i%2*20}' r='5' fill='${K}'/>`).join('')}`,
+`<path d='M-10 230Q120 160 250 220T410 200V300H-10Z' fill='${b}' ${st}/><rect x='150' y='170' width='80' height='60' fill='#fff' ${st}/><path d='M140 172L190 125L240 172Z' fill='${mx(c,.1)}' ${st}/><rect x='176' y='195' width='26' height='35' fill='${K}'/>`][v];
+return SV(`<rect width='400' height='300' fill='${a}'/><circle cx='${v==0?300:90}' cy='80' r='34' fill='${c}' ${st}/><g fill='#fff' ${st}><ellipse cx='${v==0?100:300}' cy='70' rx='42' ry='16'/><ellipse cx='${v==0?135:330}' cy='88' rx='30' ry='12'/></g>${I}`)}
+const F=[`<rect x='140' y='185' width='120' height='58' fill='url(#f)'/><rect x='158' y='135' width='92' height='50' fill='url(#f)'/><path d='M148 135L204 92L260 135Z' fill='url(#f)'/>`,`<ellipse cx='200' cy='160' rx='60' ry='82' fill='url(#f)'/><ellipse cx='178' cy='125' rx='14' ry='30' fill='#fff' opacity='.22'/>`,`<path d='M165 244C125 205 235 180 192 130C170 105 215 85 238 68L258 84C228 120 272 172 238 206C222 226 252 236 252 244Z' fill='url(#f)'/>`][v];
+return SV(`<defs><linearGradient id='s' x2='0' y2='1'><stop offset='0' stop-color='${mx(a,.3,1)}'/><stop offset='1' stop-color='${a}'/></linearGradient><linearGradient id='f'><stop offset='0' stop-color='${mx(b,.5,1)}'/><stop offset='.55' stop-color='${b}'/><stop offset='1' stop-color='${mx(b,.55)}'/></linearGradient>${fx}</defs><rect width='400' height='300' fill='url(#s)'/><rect y='238' width='400' height='62' fill='${mx(a,.18)}'/><ellipse cx='210' cy='246' rx='95' ry='11' fill='#000' opacity='.25' filter='url(#b)'/>${F}<rect width='400' height='300' filter='url(#n)' opacity='.1'/>`)}
+const W=(id,t,d,a,b,c,v,av='Available')=>({id,title:t,desc:d,img:art(a,b,c,v,id[0]),avail:av,approved:true});
+const SEED=()=>({artists:[
+{id:'kien',user:'kien',pass:'kien2026',name:'Kien V. De Vera',spec:'Painting',city:'Quezon City, Philippines',status:'approved',bio:'I paint the quiet moments that make a place feel like home. Working mostly in oil and watercolor, I look for light, memory, and little everyday wonders.',works:[W('k1','Afternoon Light','Oil on canvas, warm light over the hills.','#e3bb78','#4f6350','#f4e2a8',0),W('k2','Still Blooming','Watercolor study of a kitchen window.','#e5a78f','#66795f','#f4e2a8',1,'Commission only'),W('k3','Blue Hour','Oil on board, dusk by the river.','#8d9fab','#d4ae72','#f1e0a6',2,'Sold')],inq:[]},
+{id:'althea',user:'althea',pass:'althea2026',name:'Althea Na-ayao',spec:'Illustration',city:'Bayombong, Nueva Vizcaya',status:'approved',bio:'Digital and ink illustrator drawing folk stories, plants, and family recipes. Open to book covers and small commissions.',works:[W('a1','Rice Terrace Dreams','Digital illustration, terraces at dawn.','#c3d6c0','#3f6a52','#fff0b8',1),W('a2','Lola’s Garden','Ink and color wash.','#f2cfa6','#8a6a4a','#fff0b8',0)],inq:[]},
+{id:'john',user:'john',pass:'john2026',name:'John Zedrick Bongolan',spec:'Photography',city:'Solano, Nueva Vizcaya',status:'approved',bio:'Street and landscape photographer. I shoot early mornings and market days, mostly on a single prime lens.',works:[W('j1','Market Morning','Print, 12 x 18 in.','#b9c7d4','#37464f','#f6e9c4',2),W('j2','Fog Over the Valley','Archival print, 16 x 24 in.','#d6d9d9','#5a6b6a','#f6f3e4',1),W('j3','Last Jeepney','Print, 12 x 18 in.','#e0a981','#3c3a40','#f6e2b0',0)],inq:[]},
+{id:'rodette',user:'rodette',pass:'rodette2026',name:'Rodette Ann Dugan',spec:'Sculpture',city:'Bayombong, Nueva Vizcaya',status:'approved',bio:'Sculptor working with clay, wood, and found materials to create forms inspired by family stories and local life.',works:[W('r1','Earthen Stories','Fired clay sculpture, 30 cm.','#d9c7b0','#7a5a48','#f2e1b8',2),W('r2','Carabao Study','Carved narra wood.','#bfc9bb','#5c4a3a','#f2e1b8',1)],inq:[]},
+{id:'ruslyn',user:'ruslyn',pass:'ruslyn2026',name:'Ruslyn Lapitan',spec:'Mixed Media',city:'Solano, Nueva Vizcaya',status:'approved',bio:'Mixed-media artist combining paper, paint, textile, and found materials into layered works about memory and place.',works:[W('m1','Layers of Home','Mixed media on board.','#d7b7a0','#526b61','#f2e1b8',0),W('m2','Threads of Memory','Collage and textile assemblage.','#c6d2c3','#735d4a','#f5dfaa',1)],inq:[]}
+]});
+let S;try{S=JSON.parse(localStorage.getItem('dvps3'))}catch(e){}
+if(!S||!S.artists)S=SEED();
+const save=()=>{try{localStorage.setItem('dvps3',JSON.stringify(S))}catch(e){}};
+let me=null,flt={q:'',s:''};
+const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pub=()=>S.artists.filter(a=>a.status==='approved');
+const okW=a=>a.works.filter(w=>w.approved);
+const img=(w,alt,cls='')=>`<img class="${cls}" src="${esc(w.img)}" alt="${esc(alt)}" loading="lazy" onerror="this.onerror=null;this.src=PH">`;
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('on'),2800)}
+const themeKey='dvps-theme';
+function applyTheme(theme){document.documentElement.dataset.theme=theme;const b=$('#themeToggle');if(b){const dark=theme==='dark';b.innerHTML=dark?'☼ <span>Light mode</span>':'◐ <span>Dark mode</span>';b.setAttribute('aria-label',dark?'Switch to light mode':'Switch to dark mode');b.title=dark?'Switch to light mode':'Switch to dark mode'}}
+function initTheme(){let t='light';try{t=localStorage.getItem(themeKey)||'light'}catch(e){}applyTheme(t);const b=$('#themeToggle');if(b)b.onclick=()=>{const next=document.documentElement.dataset.theme==='dark'?'light':'dark';try{localStorage.setItem(themeKey,next)}catch(e){}applyTheme(next)}}
+function nav(){const n=$('#nav');let h='<a href="#artists">Family Artists</a><a href="#about">About</a>';
+if(me==='admin')h+='<a href="#admin">Admin review</a><button id="out">Sign out</button>';
+else if(me)h+='<a href="#workspace">My workspace</a><button id="out">Sign out</button>';
+else h+='<a class="pill" href="#signin">Member sign in</a><a href="#register">Join as an artist</a>';n.innerHTML=h;const o=$('#out');if(o)o.onclick=()=>{me=null;location.hash='home';toast('Signed out.')}}
+function cardHTML(a){const w=okW(a)[0];return `<a class="card" href="#artist-${a.id}">${w?img(w,'Artwork by '+a.name):''}<div><h3>${esc(a.name)}</h3><div class="meta">${esc(a.spec)}${a.city?' · '+esc(a.city):''}</div><div class="meta">${okW(a).length} artwork${okW(a).length==1?'':'s'}</div></div></a>`}
+function grid(){const q=flt.q.toLowerCase(),L=pub().filter(a=>(!flt.s||a.spec===flt.s)&&(!q||[a.name,a.spec,a.city].join(' ').toLowerCase().includes(q)));
+$('#grid').innerHTML=L.length?L.map(cardHTML).join(''):'<div class="empty" style="grid-column:1/-1">No family artist matches that search. Clear the search or choose All specialties.</div>'}
+function home(){const f=okW(S.artists[0])[0]||{};
+$('#app').innerHTML=`<section class="hero"><div><h1>Art deserves to be seen.</h1><p>Explore the work of the De Vera family artists and send a private inquiry about buying a piece or commissioning something new.</p><a class="btn" href="#artists">Browse family artists</a></div><div class="collage">${pub().slice(0,4).map(a=>{const w=okW(a)[0];return w?`<figure>${img(w,w.title+' by '+a.name)}<figcaption>${esc(w.title)}, ${esc(a.spec)}</figcaption></figure>`:''}).join('')}</div></section>
+<section id="directory"><h2>Family artists</h2><div class="bar"><label class="sr" for="q">Search</label><input id="q" type="search" placeholder="Search family artists or specialties…" value="${esc(flt.q)}"><label class="sr" for="f">Specialty</label><select id="f"><option value="">All specialties</option>${SPECS.map(s=>`<option ${flt.s===s?'selected':''}>${s}</option>`).join('')}</select></div><div class="grid" id="grid"></div></section>
+<section id="about"><h2>About the showcase</h2><div class="two" style="margin-top:14px"><p>One shared place for the De Vera family’s creative work. Each participating member keeps a separate profile and chooses which pieces to show. Only content approved by the family administrator is public.</p><p>Visitors can search by name, specialty, or city, open a profile, and send a private inquiry. The system does not process payments; buyers and artists settle details between themselves.</p></div></section>`;
+$('#q').oninput=e=>{flt.q=e.target.value;grid()};$('#f').onchange=e=>{flt.s=e.target.value;grid()};grid();
+if(location.hash==='#artists'||location.hash==='#about')setTimeout(()=>$(location.hash==='#about'?'#about':'#directory').scrollIntoView(),0)}
+let target=null;
+function profile(id){const a=pub().find(x=>x.id===id);if(!a){$('#app').innerHTML='<div class="empty" style="margin-top:40px">This profile is not available. <a href="#artists">Back to family artists</a></div>';return}
+const L=okW(a),f=L[0];
+$('#app').innerHTML=`<p style="margin:20px 0 0"><a href="#artists">Back to family artists</a></p><div class="prof"><figure>${f?img(f,'Representative work by '+a.name):''}</figure><div><h1>${esc(a.name)}</h1><p class="meta" style="font-size:1.05rem">${esc(a.spec)}${a.city?' · '+esc(a.city):''}</p><p style="max-width:60ch;font-size:1.1rem;margin:18px 0">${esc(a.bio)}</p><button class="btn" data-inq="${a.id}|">Ask about commissioning ${esc(a.name.split(' ')[0])}</button></div></div>
+<section><h2 style="margin-bottom:18px">Selected works</h2>${L.length?`<div class="gal">${L.map(w=>`<article>${img(w,w.title+' by '+a.name)}<h3>${esc(w.title)}</h3><p>${esc(w.desc||'No description yet.')}</p><span class="tag ${w.avail==='Available'?'ok':''}">${esc(w.avail)}</span> ${w.avail==='Sold'?'':`<button class="btn ghost sm" data-inq="${a.id}|${w.id}">Inquire</button>`}</article>`).join('')}</div>`:'<div class="empty">No approved artwork yet.</div>'}</section>`}
+function signin(){$('#app').innerHTML=`<div class="narrow panel"><h2>Member sign in</h2><p class="meta">For approved De Vera family artists and the family administrator.</p><form id="lf"><label for="u">Username</label><input id="u" autocomplete="username" required><label for="p">Password</label><input id="p" type="password" autocomplete="current-password" required><div class="err" id="le" role="alert"></div><button class="btn" style="margin-top:18px">Sign in</button></form><p class="hint">Need an artist account? <a href="#register">Register here</a>. New accounts need admin approval before sign in.</p><details class="hint"><summary>Demo credentials</summary><p>Kien: kien / kien2026<br>Althea: althea / althea2026<br>John: john / john2026<br>Rodette: rodette / rodette2026<br>Ruslyn: ruslyn / ruslyn2026<br>Admin: admin / admin123</p></details></div>`;
+$('#lf').onsubmit=e=>{e.preventDefault();const u=$('#u').value.trim().toLowerCase(),p=$('#p').value,le=$('#le');
+if(u==='admin'&&p==='admin123'){me='admin';nav();location.hash='admin';return}
+const a=S.artists.find(x=>x.user===u);if(!a||a.pass!==p){le.textContent='Username or password is incorrect. Check both and try again.';return}
+if(a.status!=='approved'){le.textContent='This account is waiting for family administrator approval.';return}
+me=a.id;nav();location.hash='workspace';toast('Welcome, '+a.name.split(' ')[0]+'.')}}
+function register(){$('#app').innerHTML=`<div class="narrow panel"><h2>Join as an artist</h2><p class="meta">Create a profile to share your art. The family administrator must approve your account before it becomes public.</p><form id="rf"><label for="rn">Full name</label><input id="rn" required><label for="ru">Choose a username</label><input id="ru" autocomplete="username" pattern="[A-Za-z0-9_]{3,20}" required><label for="rp">Choose a password</label><input id="rp" type="password" minlength="6" required><label for="rc">Confirm password</label><input id="rc" type="password" minlength="6" required><label for="rs">Art specialty</label><select id="rs">${SPECS.map(s=>`<option>${s}</option>`).join('')}</select><label for="rci">City (optional)</label><input id="rci"><label for="rb">Short artist bio</label><textarea id="rb" placeholder="Tell visitors about your art…"></textarea><div class="err" id="re" role="alert"></div><button class="btn" style="margin-top:18px">Submit registration</button></form><p class="hint"><a href="#signin">Back to member sign in</a></p></div>`;
+$('#rf').onsubmit=e=>{e.preventDefault();const name=$('#rn').value.trim(),user=$('#ru').value.trim().toLowerCase(),pass=$('#rp').value,confirm=$('#rc').value,re=$('#re');if(pass!==confirm){re.textContent='Passwords do not match.';return}if(S.artists.some(a=>a.user===user)){re.textContent='That username is already taken.';return}const id='app'+Date.now();S.artists.push({id,user,pass,name,spec:$('#rs').value,city:$('#rci').value.trim(),status:'pending',bio:$('#rb').value.trim()||'New artist applicant awaiting administrator approval.',works:[],inq:[]});save();location.hash='signin';toast('Registration submitted. Please wait for admin approval.')}}
+
+function work(){const a=S.artists.find(x=>x.id===me);if(!a||me==='admin'){location.hash='signin';return}
+$('#app').innerHTML=`<section><h1 style="font-size:2.4rem">Welcome, ${esc(a.name.split(' ')[0])}.</h1></section><div class="two">
+<div class="panel"><h2>Your profile</h2><form id="pf"><label for="pn">Display name</label><input id="pn" value="${esc(a.name)}" required><label for="ps">Specialty</label><select id="ps">${SPECS.map(s=>`<option ${a.spec===s?'selected':''}>${s}</option>`).join('')}</select><label for="pc">City (optional)</label><input id="pc" value="${esc(a.city)}"><label for="pb">About you</label><textarea id="pb">${esc(a.bio)}</textarea><button class="btn" style="margin-top:18px">Save profile</button></form></div>
+<div class="panel"><h2>Your artwork</h2>${a.works.map(w=>`<div class="row">${img(w,w.title,'thumb')}<div class="grow"><b>${esc(w.title)}</b><div class="meta">${w.approved?'<span class="tag ok">Public</span>':'<span class="tag warn">Waiting for approval</span>'}</div><select data-av="${w.id}" aria-label="Availability of ${esc(w.title)}" style="margin-top:6px;padding:4px 8px;font-size:14px">${['Available','Commission only','Sold'].map(o=>`<option ${w.avail===o?'selected':''}>${o}</option>`).join('')}</select></div><button class="lnk" data-rm="${w.id}">Remove</button></div>`).join('')||'<p class="meta">No artwork yet. Add your first piece below.</p>'}
+<form id="wf"><label for="wt">Artwork title</label><input id="wt" required><label for="wu">Image URL (optional)</label><input id="wu" type="url" placeholder="https://"><label for="wfile">Upload your own image (optional)</label><input id="wfile" type="file" accept="image/*"><label for="wd">Description (optional)</label><input id="wd"><button class="btn" style="margin-top:16px">Add artwork</button></form><p class="hint">Your public profile and artwork are visible to everyone. Only your account can edit them. New artwork goes live after the administrator approves it.</p></div></div>
+<section><div class="panel"><h2>Inquiries for your work</h2><p class="meta">Private. Visitors never see these.</p>${a.inq.length?a.inq.map(q=>`<div class="row" style="align-items:flex-start"><div class="grow"><b>${esc(q.type)}</b> <span class="tag ${q.status==='New'?'warn':''}">${q.status}</span><div class="meta">${esc(q.about)} · from ${esc(q.name)} (${esc(q.email)}) · ${esc(q.date)}</div><p style="margin:6px 0 0">${esc(q.msg)}</p></div>${q.status==='New'?`<button class="btn ghost sm" data-qs="${q.id}|Replied">Mark replied</button>`:''}<button class="lnk" data-qs="${q.id}|Archived">Archive</button></div>`).join(''):'<p class="meta" style="margin-top:12px">No inquiries yet.</p>'}</div></section>`;
+$('#pf').onsubmit=e=>{e.preventDefault();a.name=$('#pn').value.trim();a.spec=$('#ps').value;a.city=$('#pc').value.trim();a.bio=$('#pb').value.trim();save();toast('Profile saved.')};
+$('#wf').onsubmit=async e=>{e.preventDefault();const t=$('#wt').value.trim(),u=$('#wu').value.trim();const v=a.works.length+1;const fl=$('#wfile').files[0],up=fl?await shrink(fl):'';
+a.works.push({id:'w'+Date.now(),title:t,desc:$('#wd').value.trim(),img:up||u||art('#cfd8d0','#4a5f50','#f4e4ae',v,({Painting:'k',Photography:'j',Illustration:'a',Sculpture:'s','Mixed Media':'a'})[a.spec]),avail:'Available',approved:false});save();work();toast('Artwork added. Waiting for approval.')}}
+function admin(){if(me!=='admin'){location.hash='signin';return}
+const pend=S.artists.filter(a=>a.status==='pending'),pw=[];S.artists.forEach(a=>a.works.forEach(w=>{if(!w.approved)pw.push([a,w])}));
+const total=S.artists.reduce((n,a)=>n+a.inq.length,0);
+$('#app').innerHTML=`<section><h1 style="font-size:2.4rem">Admin review</h1><p class="meta">Approve family accounts and artwork before they become public. ${total} inquiries routed to artists so far.</p></section><div class="two">
+<div class="panel"><h2>Member accounts</h2>${S.artists.map(a=>`<div class="row"><div class="grow"><b>${esc(a.name)}</b><div class="meta">${esc(a.spec)}</div></div><span class="tag ${a.status==='approved'?'ok':'warn'}">${a.status==='approved'?'Approved':'Pending'}</span>${a.status==='pending'?`<button class="btn sm" data-ap="${a.id}">Approve</button>`:''}</div>`).join('')}</div>
+<div class="panel"><h2>Artwork waiting for approval</h2>${pw.length?pw.map(([a,w])=>`<div class="row">${img(w,w.title,'thumb')}<div class="grow"><b>${esc(w.title)}</b><div class="meta">${esc(a.name)}</div></div><button class="btn sm" data-aw="${a.id}|${w.id}">Approve</button><button class="lnk" data-dw="${a.id}|${w.id}">Reject</button></div>`).join(''):'<p class="meta" style="margin-top:12px">Nothing waiting. New artwork from artists shows up here.</p>'}</div></div>`}
+function route(){const h=location.hash.slice(1)||'home';nav();initTheme();window.scrollTo(0,0);
+if(h==='home'||h==='artists'||h==='about')home();else if(h.startsWith('artist-'))profile(h.slice(7));else if(h==='signin')signin();else if(h==='register')register();else if(h==='workspace')work();else if(h==='admin')admin();else home()}
+document.addEventListener('click',e=>{const t=e.target.closest('[data-inq],[data-rm],[data-qs],[data-ap],[data-aw],[data-dw]');if(!t)return;const d=t.dataset;
+if(d.inq!==undefined){const[aid,wid]=d.inq.split('|');const a=S.artists.find(x=>x.id===aid),w=a.works.find(x=>x.id===wid);target={aid,wid};
+$('#dsub').textContent=w?`About “${w.title}” by ${a.name}`:`General inquiry for ${a.name}`;$('#itype').value=w?'Purchase interest':'Commission request';$('#dlg').showModal()}
+else if(d.rm){const a=S.artists.find(x=>x.id===me);a.works=a.works.filter(w=>w.id!==d.rm);save();work();toast('Artwork removed.')}
+else if(d.qs){const[i,s]=d.qs.split('|'),a=S.artists.find(x=>x.id===me);const q=a.inq.find(x=>x.id===i);if(s==='Archived')a.inq=a.inq.filter(x=>x.id!==i);else q.status=s;save();work();toast('Inquiry '+s.toLowerCase()+'.')}
+else if(d.ap){S.artists.find(x=>x.id===d.ap).status='approved';save();admin();toast('Account approved.')}
+else if(d.aw){const[i,w]=d.aw.split('|');S.artists.find(x=>x.id===i).works.find(x=>x.id===w).approved=true;save();admin();toast('Artwork approved and now public.')}
+else if(d.dw){const[i,w]=d.dw.split('|'),a=S.artists.find(x=>x.id===i);a.works=a.works.filter(x=>x.id!==w);save();admin();toast('Artwork rejected.')}});
+document.addEventListener('change',e=>{const id=e.target.dataset.av;if(!id)return;const a=S.artists.find(x=>x.id===me);a.works.find(w=>w.id===id).avail=e.target.value;save();toast('Availability updated.')});
+$('#dx').onclick=()=>$('#dlg').close();
+$('#inqf').onsubmit=e=>{e.preventDefault();if($('#trap').value)return;const a=S.artists.find(x=>x.id===target.aid),w=a.works.find(x=>x.id===target.wid);
+a.inq.unshift({id:'q'+Date.now(),type:$('#itype').value,about:w?w.title:'General',name:$('#iname').value.trim(),email:$('#imail').value.trim(),msg:$('#imsg').value.trim(),status:'New',date:new Date().toLocaleDateString()});
+save();$('#inqf').reset();$('#dlg').close();toast('Inquiry sent privately to '+a.name.split(' ')[0]+'.')};
+addEventListener('hashchange',route);route();
+</script>
+</body>
+</html>
